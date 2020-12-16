@@ -1,8 +1,8 @@
-package eletra.project;
+package eletra;
 
 import java.io.IOException;
 
-import eletra.project.view.fxmlProjectController;
+import eletra.view.InterfaceController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,17 +17,17 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Projeto: Etapa 1");
-        
-        initfxmlProject();
-   
+       this.primaryStage.setTitle("Projeto: Etapa 1");
+       
+       initInterface();
+  
 	}
 	
-	public void initfxmlProject() {
+	public void initInterface() {
 		 try {
 	            // Carrega o root layout do arquivo fxml.
 	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(Main.class.getResource("view/fxmlProject.fxml"));
+	            loader.setLocation(Main.class.getResource("view/Interface.fxml"));
 	            rootLayout = (AnchorPane) loader.load();
 	            
 	            // Mostra a scene (cena) contendo o root layout.
@@ -36,7 +36,7 @@ public class Main extends Application {
 	            primaryStage.show();
 	            
 	         // Dá ao controlador acesso à the main app.
-	            fxmlProjectController controller = loader.getController();
+	            InterfaceController controller = loader.getController();
 	            controller.setMain(this);
 	            
 	            
