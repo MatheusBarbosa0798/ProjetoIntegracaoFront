@@ -13,9 +13,9 @@
   
   <dependencies>
   	<dependency>
-  		<groupId>connectionTEST</groupId>
- 		<artifactId>databaseTEST</artifactId>
- 		<version>0.0.1-SNAPSHOT</version>
+	  <groupId>connectionTEST</groupId>
+	  <artifactId>databaseTEST</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
 </project>

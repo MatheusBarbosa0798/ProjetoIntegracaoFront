@@ -25,10 +25,10 @@ public class InterfaceController {
     @FXML
     private TreeView<String> modelTree;
 
-    private Main main;
+    @SuppressWarnings("unused")
+	private Main main;
     
 	private ObservableList<String> linha = FXCollections.observableArrayList();
-	
 	
 	public void setMain(Main main) {
     	this.main = main;
