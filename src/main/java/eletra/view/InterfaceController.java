@@ -1,7 +1,7 @@
 package eletra.view;
 
 import eletra.Main;
-import eletra.model.TestSystem;
+import eletra.model.SystemService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +12,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
 public class InterfaceController {
+	SystemService systemService = new SystemService();
 
 	@FXML
     private TitledPane tpaneLine;
@@ -35,8 +36,8 @@ public class InterfaceController {
     }
 	
  private void loadLine() {
-	 String linha1 = TestSystem.getProduct(1).getLinha();
-	 String linha2 = TestSystem.getProduct(21).getLinha();
+	 String linha1 = systemService.findById(1).getLinha();
+	 String linha2 = systemService.findById(21).getLinha();
 		
 		linha.add(linha1);
 		linha.add(linha2);
@@ -53,25 +54,26 @@ public class InterfaceController {
     }
  	
     
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void loadModel(ActionEvent event) {
     	
  		if (comboBoxLine.getSelectionModel().getSelectedItem().toString().equals("Ares")) {
 				TreeItem<String> rootitem = new TreeItem<String> ("Linha ARES");
-	 			TreeItem<String> arestarifabranca = new TreeItem<String>(TestSystem.getProduct(1).getCategoria());
-	 			TreeItem<String> aresths = new TreeItem<String>(TestSystem.getProduct(11).getCategoria());
+	 			TreeItem<String> arestarifabranca = new TreeItem<String>(systemService.findById(1).getCategoria());
+	 			TreeItem<String> aresths = new TreeItem<String>(systemService.findById(11).getCategoria());
 	 			
 	 			modelTree.setRoot(rootitem);
 	 			rootitem.getChildren().addAll(arestarifabranca, aresths);
 	 			
-	 			TreeItem<String> tarifabranca1 = new TreeItem<String>(TestSystem.getProduct(1).getModelo());
-	 			TreeItem<String> tarifabranca2 = new TreeItem<String>(TestSystem.getProduct(2).getModelo());
-	 			TreeItem<String> tarifabranca3 = new TreeItem<String>(TestSystem.getProduct(3).getModelo());
+	 			TreeItem<String> tarifabranca1 = new TreeItem<String>(systemService.findById(1).getModelo());
+	 			TreeItem<String> tarifabranca2 = new TreeItem<String>(systemService.findById(2).getModelo());
+	 			TreeItem<String> tarifabranca3 = new TreeItem<String>(systemService.findById(3).getModelo());
 	 			arestarifabranca.getChildren().addAll(tarifabranca1, tarifabranca2, tarifabranca3);
 	 			
-	 			TreeItem<String> aresths1 = new TreeItem<String>(TestSystem.getProduct(11).getModelo());
-	 			TreeItem<String> aresths2 = new TreeItem<String>(TestSystem.getProduct(12).getModelo());
-	 			TreeItem<String> aresths3 = new TreeItem<String>(TestSystem.getProduct(13).getModelo());
+	 			TreeItem<String> aresths1 = new TreeItem<String>(systemService.findById(11).getModelo());
+	 			TreeItem<String> aresths2 = new TreeItem<String>(systemService.findById(12).getModelo());
+	 			TreeItem<String> aresths3 = new TreeItem<String>(systemService.findById(13).getModelo());
 	 			aresths.getChildren().addAll(aresths1, aresths2, aresths3);
 	 			tpaneModel.setDisable(false);
 	 			return;
@@ -79,18 +81,18 @@ public class InterfaceController {
 		
 	 	if (comboBoxLine.getSelectionModel().getSelectedItem().toString().equals("Zeus")) {
 	 			TreeItem<String> rootitem = new TreeItem<String> ("Linha ZEUS");
-	 			TreeItem<String> zeusdireto = new TreeItem<String>(TestSystem.getProduct(21).getCategoria());
-	 			TreeItem<String> zeusindireto = new TreeItem<String>(TestSystem.getProduct(31).getCategoria());
+	 			TreeItem<String> zeusdireto = new TreeItem<String>(systemService.findById(21).getCategoria());
+	 			TreeItem<String> zeusindireto = new TreeItem<String>(systemService.findById(31).getCategoria());
 	 			
 	 			modelTree.setRoot(rootitem);
 	 			rootitem.getChildren().addAll(zeusdireto, zeusindireto);
 	 			
-	 			TreeItem<String> zeusdireto1 = new TreeItem<String>(TestSystem.getProduct(21).getModelo());
-	 			TreeItem<String> zeusdireto2 = new TreeItem<String>(TestSystem.getProduct(22).getModelo());
-	 			TreeItem<String> zeusdireto3 = new TreeItem<String>(TestSystem.getProduct(23).getModelo());
+	 			TreeItem<String> zeusdireto1 = new TreeItem<String>(systemService.findById(21).getModelo());
+	 			TreeItem<String> zeusdireto2 = new TreeItem<String>(systemService.findById(22).getModelo());
+	 			TreeItem<String> zeusdireto3 = new TreeItem<String>(systemService.findById(23).getModelo());
 	 			zeusdireto.getChildren().addAll(zeusdireto1, zeusdireto2, zeusdireto3);
 	 			
-	 			TreeItem<String> zeusindireto1 = new TreeItem<String>(TestSystem.getProduct(31).getModelo());
+	 			TreeItem<String> zeusindireto1 = new TreeItem<String>(systemService.findById(31).getModelo());
 	 			
 	 			zeusindireto.getChildren().add(zeusindireto1);
 	 	 	 	tpaneModel.setDisable(false);
