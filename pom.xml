@@ -4,12 +4,20 @@
   <artifactId>Step3-Front</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Step3-Front</name>
+  <url>http://maven.apache.org</url>
   
 	<properties>
     	<maven.compiler.target>1.8</maven.compiler.target>
-    	<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.source>1.8</maven.compiler.source>  	
 	</properties>
   
+   <build>
+    <plugins>
+
+
+        
+    </plugins>
+</build>
   
   <dependencies>
   	<dependency>

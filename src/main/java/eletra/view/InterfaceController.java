@@ -1,6 +1,11 @@
 package eletra.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import eletra.Main;
+import eletra.model.Products;
+import eletra.model.SystemDao;
 import eletra.model.SystemService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +16,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
-public class InterfaceController {
+	public class InterfaceController {
 	SystemService systemService = new SystemService();
 
 	@FXML
@@ -29,24 +34,30 @@ public class InterfaceController {
     @SuppressWarnings("unused")
 	private Main main;
     
-	private ObservableList<String> linha = FXCollections.observableArrayList();
 	
 	public void setMain(Main main) {
     	this.main = main;
     }
 	
- private void loadLine() {
-	 String linha1 = systemService.findById(1).getLinha();
-	 String linha2 = systemService.findById(21).getLinha();
-		
-		linha.add(linha1);
-		linha.add(linha2);
-		
-		comboBoxLine.setItems(linha);
-		tpaneModel.setDisable(true); 
+	private ArrayList<Products> listProd = new ArrayList<Products>(systemService.findAll());
+	private ObservableList<String> lines = FXCollections.observableArrayList();	
 	
+	private void loadLine() {
+		tpaneModel.setDisable(true); 
+	 
+	for(Products temp : listProd) {
+		if(lines.contains(temp.getLinha())) {
+		}
+		else {
+			String box = temp.getLinha();
+			lines.add(box);
+		}
+	}
+	 
+		comboBoxLine.setItems(lines);
  	} 
- 	
+
+ 
     @FXML
     private void initialize() {
     	loadLine();
@@ -54,14 +65,58 @@ public class InterfaceController {
     }
  	
     
-    @SuppressWarnings("unchecked")
-	@FXML
+    @FXML
     void loadModel(ActionEvent event) {
+    	tpaneModel.setDisable(false); 
     	
- 		if (comboBoxLine.getSelectionModel().getSelectedItem().toString().equals("Ares")) {
+    	ObservableList<String> catgs = FXCollections.observableArrayList();
+		TreeItem<String> rootitem = new TreeItem<String> (comboBoxLine.getSelectionModel().getSelectedItem());
+		modelTree.setRoot(rootitem);
+		
+		for(Products temp : listProd) {			
+			if(temp.getLinha().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
+				if(catgs.contains(temp.getCategoria())) {
+				}
+				else {
+					String tree = temp.getCategoria();
+					catgs.add(tree);
+				}
+			}
+		}
+		for(String c : catgs) {
+			TreeItem<String> treeitem = new TreeItem<String>(c);
+			rootitem.getChildren().add(treeitem);
+			for(Products temps : listProd) {
+				if(temps.getCategoria().equals(c)) {
+				TreeItem<String> treebranch = new TreeItem<String>(temps.getModelo());
+				treeitem.getChildren().add(treebranch);
+				}
+			}
+		}
+		
+
+			
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+ 		/*if (comboBoxLine.getSelectionModel().getSelectedItem().toString().equals("Ares")) {
 				TreeItem<String> rootitem = new TreeItem<String> ("Linha ARES");
 	 			TreeItem<String> arestarifabranca = new TreeItem<String>(systemService.findById(1).getCategoria());
-	 			TreeItem<String> aresths = new TreeItem<String>(systemService.findById(11).getCategoria());
+	 			TreeItem<String> aresths = new TreeItem<String>(systemService.findById(4).getCategoria());
 	 			
 	 			modelTree.setRoot(rootitem);
 	 			rootitem.getChildren().addAll(arestarifabranca, aresths);
@@ -71,9 +126,9 @@ public class InterfaceController {
 	 			TreeItem<String> tarifabranca3 = new TreeItem<String>(systemService.findById(3).getModelo());
 	 			arestarifabranca.getChildren().addAll(tarifabranca1, tarifabranca2, tarifabranca3);
 	 			
-	 			TreeItem<String> aresths1 = new TreeItem<String>(systemService.findById(11).getModelo());
-	 			TreeItem<String> aresths2 = new TreeItem<String>(systemService.findById(12).getModelo());
-	 			TreeItem<String> aresths3 = new TreeItem<String>(systemService.findById(13).getModelo());
+	 			TreeItem<String> aresths1 = new TreeItem<String>(systemService.findById(4).getModelo());
+	 			TreeItem<String> aresths2 = new TreeItem<String>(systemService.findById(5).getModelo());
+	 			TreeItem<String> aresths3 = new TreeItem<String>(systemService.findById(6).getModelo());
 	 			aresths.getChildren().addAll(aresths1, aresths2, aresths3);
 	 			tpaneModel.setDisable(false);
 	 			return;
@@ -81,23 +136,24 @@ public class InterfaceController {
 		
 	 	if (comboBoxLine.getSelectionModel().getSelectedItem().toString().equals("Zeus")) {
 	 			TreeItem<String> rootitem = new TreeItem<String> ("Linha ZEUS");
-	 			TreeItem<String> zeusdireto = new TreeItem<String>(systemService.findById(21).getCategoria());
-	 			TreeItem<String> zeusindireto = new TreeItem<String>(systemService.findById(31).getCategoria());
+	 			TreeItem<String> zeusdireto = new TreeItem<String>(systemService.findById(7).getCategoria());
+	 			TreeItem<String> zeusindireto = new TreeItem<String>(systemService.findById(10).getCategoria());
 	 			
 	 			modelTree.setRoot(rootitem);
 	 			rootitem.getChildren().addAll(zeusdireto, zeusindireto);
 	 			
-	 			TreeItem<String> zeusdireto1 = new TreeItem<String>(systemService.findById(21).getModelo());
-	 			TreeItem<String> zeusdireto2 = new TreeItem<String>(systemService.findById(22).getModelo());
-	 			TreeItem<String> zeusdireto3 = new TreeItem<String>(systemService.findById(23).getModelo());
+	 			TreeItem<String> zeusdireto1 = new TreeItem<String>(systemService.findById(7).getModelo());
+	 			TreeItem<String> zeusdireto2 = new TreeItem<String>(systemService.findById(8).getModelo());
+	 			TreeItem<String> zeusdireto3 = new TreeItem<String>(systemService.findById(9).getModelo());
 	 			zeusdireto.getChildren().addAll(zeusdireto1, zeusdireto2, zeusdireto3);
 	 			
-	 			TreeItem<String> zeusindireto1 = new TreeItem<String>(systemService.findById(31).getModelo());
+	 			TreeItem<String> zeusindireto1 = new TreeItem<String>(systemService.findById(10).getModelo());
 	 			
 	 			zeusindireto.getChildren().add(zeusindireto1);
 	 	 	 	tpaneModel.setDisable(false);
+	 	 	 	
 	 			return;
-	 		}
+	 		}*/
     	
     }  
 	

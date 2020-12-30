@@ -2,8 +2,11 @@
 
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eletra.view.InterfaceController">
@@ -15,6 +18,13 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ComboBox fx:id="comboBoxLine" layoutX="186.0" layoutY="44.0" onAction="#loadModel" promptText="Selecione uma linha de medidores." />
+                        <Label fx:id="imageLabel" layoutX="286.0" layoutY="166.0" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="216.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+							<!-- Change path to "@../../img/logo.png" when using Scene Builder -->
+                              <Image url="@../../img/logo.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>

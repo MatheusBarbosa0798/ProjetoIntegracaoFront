@@ -17,7 +17,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-       this.primaryStage.setTitle("Projeto: Etapa 1");
+       this.primaryStage.setTitle("Projeto Integração");
        
        initInterface();
   
@@ -43,10 +43,7 @@ public class Main extends Application {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
-		
-		 
 	}
-	
 	
 	public static void main(String[] args) {
 		launch(args);
