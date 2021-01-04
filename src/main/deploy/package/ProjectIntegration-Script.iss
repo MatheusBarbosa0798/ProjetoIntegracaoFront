@@ -2,12 +2,12 @@
 ;I.e. current directory will contain folder DeviceConfig with application files
 [Setup]
 AppId={{application}}
-AppName=ProjectSetup
+AppName=ProjectIntegration
 AppVersion=1.0
-AppVerName=Project Integration 1.0
+AppVerName=ProjectIntegration 1.0
 AppPublisher=Eletra Energy Solutions
 AppComments=ProjectIntegration
-AppCopyright=Copyright (C) 2020
+AppCopyright=Copyright (C) 2017
 ;AppPublisherURL=http://java.com/
 ;AppSupportURL=http://java.com/
 ;AppUpdatesURL=http://java.com/
@@ -23,15 +23,15 @@ DefaultGroupName=Eletra Energy Solutions
 LicenseFile=
 ;WinXP or above
 MinVersion=0,5.1 
-OutputBaseFilename=Project Integration 1.0
+OutputBaseFilename=ProjectIntegration-1.0
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
-SetupIconFile=ProjectIntegration\DeviceConfig.ico
-UninstallDisplayIcon={app}\DeviceConfig.ico
+SetupIconFile=ProjectIntegration\ProjectIntegration.ico
+UninstallDisplayIcon={app}\ProjectIntegration.ico
 UninstallDisplayName=ProjectIntegration
 WizardImageStretch=No
-WizardSmallImageFile=DeviceConfig-setup-icon.bmp
+WizardSmallImageFile=ProjectIntegration-setup-icon.bmp
 ArchitecturesInstallIn64BitMode=
 UsePreviousGroup=no
 UsePreviousAppDir=no
@@ -40,26 +40,29 @@ UsePreviousAppDir=no
 Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "pt"; MessagesFile: "compiler:Languages/BrazilianPortuguese.isl"
 
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
 [Files]
-Source: "ProjectIntegration\ProjectSetup.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "ProjectIntegration\ProjectIntegration.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "ProjectIntegration\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{group}\ProjectIntegration"; Filename: "{app}\ProjectSetup.exe"; IconFilename: "{app}\DeviceConfig.ico"; Check: returnTrue()
-Name: "{commondesktop}\ProjectIntegration"; Filename: "{app}\ProjectSetup.exe";  IconFilename: "{app}\DeviceConfig.ico"; Check: returnTrue()
+Name: "{group}\ProjectIntegration"; Filename: "{app}\ProjectIntegration.exe"; IconFilename: "{app}\ProjectIntegration.ico"; Check: returnTrue()
+Name: "{commondesktop}\ProjectIntegration"; Filename: "{app}\ProjectIntegration.exe";  IconFilename: "{app}\ProjectIntegration.ico"; Check: returnTrue()
 
 
 [Run]                                                                                         
-Filename: "{localappdata}\ProjectIntegration\unins000.exe"; Flags: skipifdoesntexist           
-Filename: "{app}\ProjectSetup.exe"; Parameters: "-Xappcds:generatecache"; Check: returnFalse()
-Filename: "{app}\ProjectSetup.exe"; Description: "{cm:LaunchProgram,DeviceConfig}"; Flags: nowait postinstall skipifsilent; Check: returnTrue()
-Filename: "{app}\ProjectSetup.exe"; Parameters: "-install -svcName ""ProjectIntegration"" -svcDesc ""ProjectIntegration"" -mainExe ""ProjectSetup.exe""  "; Check: returnFalse()
+Filename: "{localappdata}\ProjectIntegration\uninstall.exe"; Flags: skipifdoesntexist           
+Filename: "{app}\ProjectIntegration.exe"; Parameters: "-Xappcds:generatecache"; Check: returnFalse()
+Filename: "{app}\ProjectIntegration.exe"; Description: "{cm:LaunchProgram,ProjectIntegration}"; Flags: nowait postinstall skipifsilent; Check: returnTrue()
+Filename: "{app}\ProjectIntegration.exe"; Parameters: "-install -svcName ""ProjectIntegration"" -svcDesc ""ProjectIntegration"" -mainExe ""ProjectIntegration.exe""  "; Check: returnFalse()
                   
 [InstallDelete]  
 Type: files; Name: "{commondesktop}\ZeusConfig.lnk"; 
 
 [UninstallRun]
-Filename: "{app}\Uninstall.exe "; Parameters: "-uninstall -svcName ProjectIntegration -stopOnUninstall"; Check: returnFalse()  
+Filename: "{app}\ProjectIntegration.exe "; Parameters: "-uninstall -svcName ProjectIntegration -stopOnUninstall"; Check: returnFalse()  
 
 [Code]
 function returnTrue(): Boolean;

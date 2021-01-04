@@ -1,7 +1,7 @@
-package eletra.view;
+package main.java.eletra.view;
 
 import java.util.ArrayList;
-import eletra.Main;
+import main.java.eletra.Main;
 import eletra.model.Products;
 import eletra.model.SystemService;
 import javafx.collections.FXCollections;
@@ -63,8 +63,7 @@ import javafx.scene.control.TreeView;
  	
     
     @FXML
-    void loadModel(ActionEvent event) {
-    	tpaneModel.setDisable(false); 
+    void loadModel(ActionEvent event) { 
     	
     	ObservableList<String> catgs = FXCollections.observableArrayList();
 		TreeItem<String> rootitem = new TreeItem<String> (comboBoxLine.getSelectionModel().getSelectedItem());
@@ -90,7 +89,7 @@ import javafx.scene.control.TreeView;
 				}
 			}
 		}
-		
+    	tpaneModel.setDisable(false);
     }  
 	
     

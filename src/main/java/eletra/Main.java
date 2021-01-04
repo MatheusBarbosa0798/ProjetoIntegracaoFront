@@ -1,8 +1,8 @@
-package eletra;
+package main.java.eletra;
 
 import java.io.IOException;
 
-import eletra.view.InterfaceController;
+import main.java.eletra.view.InterfaceController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -47,5 +47,6 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+		System.exit(0);
 	}
 }
