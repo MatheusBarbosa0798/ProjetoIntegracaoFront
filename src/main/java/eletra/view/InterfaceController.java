@@ -47,6 +47,7 @@ import javafx.scene.control.TreeView;
 	
     @FXML
     void updateDatabase(ActionEvent event) {
+    	comboBoxLine.getSelectionModel().select(null);
     	loadLine();
     }
 	
@@ -93,16 +94,16 @@ import javafx.scene.control.TreeView;
 		}
 
 		for(String c : catgs) {
-			
-				TreeItem<String> treeitem = new TreeItem<String>(c);
-				rootitem.getChildren().add(treeitem);
-				for(Products temps : listProd) {
+			TreeItem<String> treeitem = new TreeItem<String>(c);
+			rootitem.getChildren().add(treeitem);
+			for(Products temps : listProd) {
+				if(temps.getLinha().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
 					if(temps.getCategoria().equals(c)) {
-					TreeItem<String> treebranch = new TreeItem<String>(temps.getModelo());
-					treeitem.getChildren().add(treebranch);
+						TreeItem<String> treebranch = new TreeItem<String>(temps.getModelo());
+						treeitem.getChildren().add(treebranch);
 					}
 				}
-			
+			}
 		}
 		
 		tpaneModel.setDisable(false);  	
