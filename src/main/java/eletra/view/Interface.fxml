@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.eletra.view.InterfaceController">
    <children>
-      <Accordion layoutY="76.0" prefHeight="324.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
+      <Accordion layoutY="69.0" prefHeight="331.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
         <panes>
           <TitledPane fx:id="tpaneLine" expanded="false" text="Linha">
             <content>
@@ -39,11 +39,11 @@
           </TitledPane>
         </panes>
       </Accordion>
-      <Button fx:id="updateButton" layoutX="272.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateDatabase">
+      <Button fx:id="updateButton" layoutX="277.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateDatabase" prefHeight="44.0" prefWidth="46.0" style="-fx-background-radius: 100;">
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0">
+            <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
-                  <Image url="@../../img/eletralogo.png" />
+                  <Image url="@../../img/refresh30p.png" />
                </image>
             </ImageView>
          </graphic></Button>
