@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class URLConnection1 {
 
-	private static final String GET_URL = "http://localhost:8080/api/products";
+	private static final String GET_URL = "http://localhost:8080/api/meters";
 
 	public static List<Products> sendGET() throws IOException {
 		URL obj = new URL(GET_URL);
