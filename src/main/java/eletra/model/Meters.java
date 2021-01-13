@@ -2,7 +2,7 @@ package main.java.eletra.model;
 
 
 
-public class Products {
+public class Meters {
 	
 	private long id;
 	

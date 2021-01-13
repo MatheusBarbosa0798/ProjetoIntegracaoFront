@@ -1,6 +1,6 @@
 package main.java.eletra.connection;
 
-import main.java.eletra.model.Products;
+import main.java.eletra.model.Meters;
 import java.lang.reflect.Type;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class URLConnection1 {
 
 	private static final String GET_URL = "http://localhost:8080/api/meters";
 
-	public static List<Products> sendGET() throws IOException {
+	public static List<Meters> sendGET() throws IOException {
 		URL obj = new URL(GET_URL);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("GET");
@@ -36,8 +36,8 @@ public class URLConnection1 {
 			}
 			in.close();
 			
-			Type listType = new TypeToken<ArrayList<Products>>(){}.getType();
-			List<Products> meterList = new Gson().fromJson(response.toString(), listType);
+			Type listType = new TypeToken<ArrayList<Meters>>(){}.getType();
+			List<Meters> meterList = new Gson().fromJson(response.toString(), listType);
 
 			return meterList;
 			

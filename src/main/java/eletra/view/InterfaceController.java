@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.eletra.model.Products;
+import main.java.eletra.model.Meters;
 import main.java.eletra.connection.URLConnection1;
 
 import javafx.collections.FXCollections;
@@ -43,7 +43,7 @@ import main.java.eletra.Main;
     	this.main = main;
     }
 	
-	private List<Products> listProd = new ArrayList<Products>();
+	private List<Meters> listProd = new ArrayList<Meters>();
 	private ObservableList<String> lines = FXCollections.observableArrayList();	
 	
     @FXML
@@ -58,7 +58,7 @@ import main.java.eletra.Main;
 		tpaneModel.setDisable(true);
 		listProd = URLConnection1.sendGET();
 		
-	for(Products temp : listProd) {
+	for(Meters temp : listProd) {
 		if(lines.contains(temp.getLine())) {
 		}
 		else {
@@ -85,7 +85,7 @@ import main.java.eletra.Main;
 		TreeItem<String> rootitem = new TreeItem<String> (comboBoxLine.getSelectionModel().getSelectedItem());
 		modelTree.setRoot(rootitem);
 
-		for(Products temp : listProd) {			
+		for(Meters temp : listProd) {			
 			if(temp.getLine().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
 				if(!catgs.contains(temp.getCategory())) {
 					String tree = temp.getCategory();
@@ -97,7 +97,7 @@ import main.java.eletra.Main;
 		for(String c : catgs) {
 			TreeItem<String> treeitem = new TreeItem<String>(c);
 			rootitem.getChildren().add(treeitem);
-			for(Products temps : listProd) {
+			for(Meters temps : listProd) {
 				if(temps.getLine().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
 					if(temps.getCategory().equals(c)) {
 						TreeItem<String> treebranch = new TreeItem<String>(temps.getModel());
