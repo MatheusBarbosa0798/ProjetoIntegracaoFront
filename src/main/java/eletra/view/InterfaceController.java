@@ -1,11 +1,12 @@
 package main.java.eletra.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.eletra.Main;
-import eletra.model.Products;
-import eletra.model.SystemService;
+import com.products.apirest.models.Products;
+import com.products.apirest.resources.URLConnection1;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,9 +16,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import main.java.eletra.Main;
  
 	public class InterfaceController {
-	SystemService systemService = new SystemService();
+	URLConnection1 urlConnecta = new URLConnection1();
 
 	@FXML
     private TitledPane tpaneLine;
@@ -46,22 +48,22 @@ import javafx.scene.control.TreeView;
 	private ObservableList<String> lines = FXCollections.observableArrayList();	
 	
     @FXML
-    void updateDatabase(ActionEvent event) {
+    private void updateDatabase(ActionEvent event) throws IOException {
+		tpaneLine.setExpanded(false);
     	comboBoxLine.getSelectionModel().select(null);
     	loadLine();
     }
 	
-	private void loadLine() {
-		tpaneLine.setExpanded(false);
+	private void loadLine() throws IOException {
 		tpaneModel.setExpanded(false);;
 		tpaneModel.setDisable(true);
-		listProd = systemService.findAll();
+		listProd = URLConnection1.sendGET();
 		
 	for(Products temp : listProd) {
-		if(lines.contains(temp.getLinha())) {
+		if(lines.contains(temp.getLine())) {
 		}
 		else {
-			String box = temp.getLinha();
+			String box = temp.getLine();
 			lines.add(box);
 		}
 	}
@@ -71,7 +73,7 @@ import javafx.scene.control.TreeView;
 
  
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
     	loadLine();
     	
     }
@@ -85,9 +87,9 @@ import javafx.scene.control.TreeView;
 		modelTree.setRoot(rootitem);
 
 		for(Products temp : listProd) {			
-			if(temp.getLinha().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
-				if(!catgs.contains(temp.getCategoria())) {
-					String tree = temp.getCategoria();
+			if(temp.getLine().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
+				if(!catgs.contains(temp.getCategory())) {
+					String tree = temp.getCategory();
 					catgs.add(tree);
 				}
 			}
@@ -97,9 +99,9 @@ import javafx.scene.control.TreeView;
 			TreeItem<String> treeitem = new TreeItem<String>(c);
 			rootitem.getChildren().add(treeitem);
 			for(Products temps : listProd) {
-				if(temps.getLinha().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
-					if(temps.getCategoria().equals(c)) {
-						TreeItem<String> treebranch = new TreeItem<String>(temps.getModelo());
+				if(temps.getLine().equals(comboBoxLine.getSelectionModel().getSelectedItem())) {
+					if(temps.getCategory().equals(c)) {
+						TreeItem<String> treebranch = new TreeItem<String>(temps.getModel());
 						treeitem.getChildren().add(treebranch);
 					}
 				}
