@@ -4,12 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.products.apirest.models.Products;
-import com.products.apirest.resources.URLConnection1;
+import main.java.eletra.model.Products;
+import main.java.eletra.connection.URLConnection1;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -48,14 +47,14 @@ import main.java.eletra.Main;
 	private ObservableList<String> lines = FXCollections.observableArrayList();	
 	
     @FXML
-    private void updateDatabase(ActionEvent event) throws IOException {
+    private void updateDatabase() throws IOException {
 		tpaneLine.setExpanded(false);
     	comboBoxLine.getSelectionModel().select(null);
     	loadLine();
     }
 	
 	private void loadLine() throws IOException {
-		tpaneModel.setExpanded(false);;
+		tpaneModel.setExpanded(false);
 		tpaneModel.setDisable(true);
 		listProd = URLConnection1.sendGET();
 		
@@ -80,7 +79,7 @@ import main.java.eletra.Main;
  	
     
     @FXML
-    void loadModel(ActionEvent event) { 
+    void loadModel() { 
     	
     	ObservableList<String> catgs = FXCollections.observableArrayList();
 		TreeItem<String> rootitem = new TreeItem<String> (comboBoxLine.getSelectionModel().getSelectedItem());
