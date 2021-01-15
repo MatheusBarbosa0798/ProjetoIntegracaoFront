@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.eletra.model.Meters;
-import main.java.eletra.connection.URLConnection1;
+import main.java.eletra.connection.URLConnecta;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,22 +18,22 @@ import javafx.scene.control.TreeView;
 import main.java.eletra.Main;
  
 	public class InterfaceController {
-	URLConnection1 urlConnecta = new URLConnection1();
+	URLConnecta urlConnecta = new URLConnecta();
 
 	@FXML
-    private TitledPane tpaneLine;
+    public TitledPane tpaneLine;
 
     @FXML
-    private ComboBox<String> comboBoxLine;
+    public ComboBox<String> comboBoxLine;
 
     @FXML
-    private TitledPane tpaneModel;
+    public TitledPane tpaneModel;
 
     @FXML
-    private TreeView<String> modelTree;
+    public TreeView<String> modelTree;
     
     @FXML
-    private Button updateButton;
+    public Button updateButton;
 
     @SuppressWarnings("unused")
 	private Main main;
@@ -43,20 +43,20 @@ import main.java.eletra.Main;
     	this.main = main;
     }
 	
-	private List<Meters> listProd = new ArrayList<Meters>();
-	private ObservableList<String> lines = FXCollections.observableArrayList();	
+	public List<Meters> listProd = new ArrayList<Meters>();
+	public List<String> lines = new ArrayList<String>();
 	
     @FXML
-    private void updateDatabase() throws IOException {
+    public void updateDatabase() throws IOException {
 		tpaneLine.setExpanded(false);
     	comboBoxLine.getSelectionModel().select(null);
     	loadLine();
     }
 	
-	private void loadLine() throws IOException {
+	public void loadLine() throws IOException {
 		tpaneModel.setExpanded(false);
 		tpaneModel.setDisable(true);
-		listProd = URLConnection1.sendGET();
+		listProd = URLConnecta.sendGET();
 		
 	for(Meters temp : listProd) {
 		if(lines.contains(temp.getLine())) {
@@ -67,19 +67,19 @@ import main.java.eletra.Main;
 		}
 	}
 	 
-	comboBoxLine.setItems(lines);
+	comboBoxLine.setItems(FXCollections.observableArrayList(lines));
  	} 
 
  
     @FXML
-    private void initialize() throws IOException {
+    public void initialize() throws IOException {
     	loadLine();
     	
     }
  	
     
     @FXML
-    void loadModel() { 
+    public void loadModel() { 
     	
     	ObservableList<String> catgs = FXCollections.observableArrayList();
 		TreeItem<String> rootitem = new TreeItem<String> (comboBoxLine.getSelectionModel().getSelectedItem());
