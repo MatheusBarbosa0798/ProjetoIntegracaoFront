@@ -29,11 +29,6 @@ import main.java.eletra.model.Meters;
 @SuppressWarnings("unused")
 @RunWith(JfxRunner.class)
 public class InterfaceControllerTest {
-	
-	
-	Meters meters = Mockito.mock(Meters.class);
-	URLConnecta urlConnect = Mockito.mock(URLConnecta.class);
-	
 	InterfaceController ic = spy(InterfaceController.class);
 	Main m = spy(Main.class);
 	
