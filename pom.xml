@@ -127,6 +127,12 @@
 		<artifactId>resteasy-client</artifactId>
 		<version>3.0.13.Final</version>
 	</dependency>
+	
+	<dependency>
+  		<groupId>de.saxsys</groupId>
+  		<artifactId>jfx-testrunner</artifactId>
+  		<version>1.2</version>
+	</dependency>
     
   </dependencies>
 </project>

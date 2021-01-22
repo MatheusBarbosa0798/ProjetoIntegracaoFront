@@ -20,9 +20,8 @@ public class URLConnecta {
 	private static final String GET_URL = "http://localhost:8080/api/meters";
 
 	public static ArrayList<Meters> sendGET() throws IOException {
-		
 		ResteasyClient client = new ResteasyClientBuilder().build();
-		
+		 
 		//GET
 		ResteasyWebTarget getDummy = client.target(GET_URL);
 		Response getDummyResponse = getDummy.request().get();

@@ -42,21 +42,21 @@ import main.java.eletra.Main;
 	public void setMain(Main main) {
     	this.main = main;
     }
-	
+	 
 	public List<Meters> listProd = new ArrayList<Meters>();
 	public List<String> lines = new ArrayList<String>();
 	
     @FXML
-    public void updateDatabase() throws IOException {
+    public void updateDatabase() {
 		tpaneLine.setExpanded(false);
     	comboBoxLine.getSelectionModel().select(null);
     	loadLine();
     }
 	
-	public void loadLine() throws IOException {
+	public void loadLine() {
 		tpaneModel.setExpanded(false);
 		tpaneModel.setDisable(true);
-		listProd = URLConnecta.sendGET();
+		extractedUrlLoadLine();
 		
 	for(Meters temp : listProd) {
 		if(lines.contains(temp.getLine())) {
@@ -68,11 +68,19 @@ import main.java.eletra.Main;
 	}
 	 
 	comboBoxLine.setItems(FXCollections.observableArrayList(lines));
- 	} 
+ 	}
+
+	protected void extractedUrlLoadLine() {
+		try {
+			listProd = URLConnecta.sendGET();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	} 
 
  
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
     	loadLine();
     	
     }
